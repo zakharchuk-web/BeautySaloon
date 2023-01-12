@@ -1,4 +1,4 @@
-package com;
+package command;
 
 import controller.util.SecurityConstraints;
 import dto.Role;
