@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS master;
 DROP TABLE IF EXISTS record;
 DROP TABLE IF EXISTS service_price;
 DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS registration;
 
 CREATE TABLE `beauty_saloon`.`service_price` (
                                                  `idservice_price` SERIAL,
@@ -41,11 +42,11 @@ INSERT INTO service_price (service_name, service_price)
 
 
 CREATE TABLE `beauty_saloon`.`user` (
-                                        `iduser` INT NOT NULL AUTO_INCREMENT,
+                                        `iduser` SERIAL,
                                         `first_name` VARCHAR(45) NULL,
                                         `last_name` VARCHAR(45) NULL,
                                         `e_mail` VARCHAR(45) NULL,
-                                        `password` VARCHAR(45) NULL,
+                                        `password` INT NULL,
                                         `role` VARCHAR(45) NULL,
                                         PRIMARY KEY (`iduser`),
                                         UNIQUE INDEX `e_mail_UNIQUE` (`e_mail` ASC) VISIBLE,
@@ -53,6 +54,28 @@ CREATE TABLE `beauty_saloon`.`user` (
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
     COLLATE = utf8_unicode_ci;
+
+INSERT INTO user (first_name, last_name, e_mail, password, role)
+    VALUE ('Facial','Harbal', 'qw@gmail.gov',1111, 'admin');
+
+
+
+CREATE TABLE `beauty_saloon`.`registration` (
+                                                `idregistration` INT NOT NULL AUTO_INCREMENT,
+                                                `first_name` VARCHAR(45) NULL,
+                                                `last_name` VARCHAR(45) NULL,
+                                                `e_mail` VARCHAR(45) NULL,
+                                                `password` INT NULL,
+                                                PRIMARY KEY (`idregistration`)
+                                            );
+
+
+INSERT INTO registration (first_name, last_name, e_mail, password)
+    VALUE ('Facial','Harbal', 'qw@gmail.gov',1111);
+
+
+
+
 
 
 CREATE TABLE `beauty_saloon`.`record` (
