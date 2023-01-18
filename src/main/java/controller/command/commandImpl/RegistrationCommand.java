@@ -29,31 +29,31 @@ public class RegistrationCommand implements Command {
         String lastName = request.getParameter("lastname");
         String eMail = request.getParameter("e_mail");
         String password = request.getParameter("password");
-        if (!Validator.isValidName(firstName)) {
-            request.setAttribute("isError", true);
-            request.setAttribute("errorMessage", "Invalid first name, please try again.");
-            return Pages.SIGN_UP_PAGE;
-        }
-        if (!Validator.isValidName(lastName)) {
-            request.setAttribute("isError", true);
-            request.setAttribute("errorMessage", "Invalid last name, please try again.");
-            return Pages.SIGN_UP_PAGE;
-        }
+//        if (!Validator.isValidName(firstName)) {
+//            request.setAttribute("isError", true);
+//            request.setAttribute("errorMessage", "Invalid first name, please try again.");
+//            return Pages.SIGN_UP_PAGE;
+//        }
+//        if (!Validator.isValidName(lastName)) {
+//            request.setAttribute("isError", true);
+//            request.setAttribute("errorMessage", "Invalid last name, please try again.");
+//            return Pages.SIGN_UP_PAGE;
+//        }
         if (!userService.isUniqueEmail(eMail)) {
             request.setAttribute("isError", true);
             request.setAttribute("errorMessage", "Duplicate email, please try again.");
             return Pages.SIGN_UP_PAGE;
         }
-        if (!Validator.isValidPassword(password)) {
-            request.setAttribute("isError", true);
-            request.setAttribute("errorMessage", "Wrong pass, please try again.");
-            return Pages.SIGN_UP_PAGE;
-        }
+//        if (!Validator.isValidPassword(password)) {
+//            request.setAttribute("isError", true);
+//            request.setAttribute("errorMessage", "Wrong pass, please try again.");
+//            return Pages.SIGN_UP_PAGE;
+//        }
         User user = new User();
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(eMail);
-        user.setPassword(Sha256Encoder.encode(password));
+        user.setPassword(password);
         userService.add(user);
 
         return Pages.SIGN_IN_PAGE;

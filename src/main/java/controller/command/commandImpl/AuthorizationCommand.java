@@ -40,19 +40,20 @@ public class AuthorizationCommand implements Command {
                 request.setAttribute("errorMessage", "There is not acc with this email, please try again.");
                 return Pages.SIGN_IN_PAGE;
             }
-            if (!user.getPassword().equals(Sha256Encoder.encode(password))) {
+            if (!user.getPassword().equals(password)) {
                 request.setAttribute("isError", true);
                 request.setAttribute("errorMessage", "Wrong pass, please try again.");
                 System.out.println(user.getPassword());
                 return Pages.SIGN_IN_PAGE;
-            } else {
-                HttpSession session = request.getSession();
-                if (user.getRole().equals(Role.MASTER)){
-                    Master master = masterService.findByEmail(eMail);
-                    session.setAttribute("currentUser", master);
-                }else session.setAttribute("currentUser", user);
-
             }
+//            else {
+//                HttpSession session = request.getSession();
+//                if (user.getRole().equals(Role.MASTER)){
+//                    Master master = masterService.findByEmail(eMail);
+//                    session.setAttribute("currentUser", master);
+//                }else session.setAttribute("currentUser", user);
+//
+//            }
             return Pages.MAIN_PAGE;
         }
     }
